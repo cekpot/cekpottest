@@ -1,23 +1,18 @@
-# Chipomatic — CHIPS Price Bot
+# Chipomatic — Sure-Fix Package (PTB v21)
 
-A Telegram bot that posts $CHIPS price in USD + SOL, FDV, and Liquidity every X minutes.
+This version removes old `Updater` API and uses `ApplicationBuilder` (python-telegram-bot v21).
 
-## Features
-- Default 2-minute updates
-- Commands:
-  - `/start` — start updates
-  - `/stop` — stop updates
-  - `/price` — get price instantly
-  - `/setinterval <time>` — change frequency (e.g., 30s, 2m, 1h)
-  - `/status` — see current settings
-  - `/help` — show commands
+## Deploy (Railway)
+1. Upload these files to your GitHub repo and deploy from GitHub on Railway.
+2. **Set Start Command to** (only if env var UI keeps failing):
+   ```
+   env TELEGRAM_BOT_TOKEN=YOUR_TOKEN python bot.py
+   ```
+   Otherwise, add `TELEGRAM_BOT_TOKEN` in Railway → Variables and just run `python bot.py`.
+3. Restart the service.
+4. In Telegram, `/start` your bot.
 
-## Deploy on Railway
-1. Create a Telegram bot via [@BotFather](https://t.me/BotFather) and copy the token.
-2. Push this code to a GitHub repo.
-3. Go to [Railway](https://railway.app/) → **New Project** → **Deploy from GitHub**.
-4. Add environment variable:
-   - `TELEGRAM_BOT_TOKEN` = your bot token
-5. Deploy, then add the bot to your group and use `/start`.
-
-## Powered by Chipomatic
+## Notes
+- Default: posts every 2 minutes after `/start`.
+- Commands: `/start`, `/stop`, `/price`, `/setinterval`, `/status`, `/help`.
+- Uses Dexscreener public API (no key needed).
