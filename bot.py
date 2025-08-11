@@ -1,6 +1,5 @@
-import os
-import re
 import logging
+import re
 import aiohttp
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
@@ -18,24 +17,8 @@ PAIR = "fu7dc7yqaepb8qrs9q4tkukss1snejrvxknridtf39bf"  # CHIPS/SOL pair
 DEFAULT_INTERVAL = 120  # seconds
 JOB_NAME_PREFIX = "price_"
 
-# Read token from env (Railway Variables) or TEMP fallback (replace if needed)
-TELEGRAM_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("TELEGRAM_TOKEN") or "").strip()
-if not TELEGRAM_TOKEN:
-    # TEMP fallback: replace with your token to get unstuck, then remove & use env vars
-    TELEGRAM_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE"
-
-def _mask_token(tok: str) -> str:
-    if not tok:
-        return "<EMPTY>"
-    if len(tok) <= 8:
-        return "***"
-    return f"{tok[:4]}***{tok[-4:]} (len={len(tok)})"
-
-log.info("TELEGRAM_BOT_TOKEN visible? %s", "YES" if TELEGRAM_TOKEN and TELEGRAM_TOKEN != "YOUR_TELEGRAM_BOT_TOKEN_HERE" else "NO")
-log.info("TELEGRAM_BOT_TOKEN (masked): %s", _mask_token(TELEGRAM_TOKEN))
-
-if not TELEGRAM_TOKEN or TELEGRAM_TOKEN == "YOUR_TELEGRAM_BOT_TOKEN_HERE":
-    log.warning("Using placeholder or missing token. Set TELEGRAM_BOT_TOKEN in Railway or hardcode temporarily.")
+# ✅ Hardcoded token (TEMP). Replace later with env var for security.
+TELEGRAM_TOKEN = "8415589355:AAF5iP-kRf7OIe9UavvLqN3UB8lOw1E8i0w"
 
 # ---------- Helpers ----------
 def parse_interval(text: str):
