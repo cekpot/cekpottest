@@ -89,7 +89,7 @@ async def send_price_once(context: ContextTypes.DEFAULT_TYPE, chat_id: int):
         f"FDV: {fmt_money(fdv)} | Liquidity: {fmt_money(liq)}\n"
         f"{info['url']}\n"
         "—\n"
-        "Powered by Chipomatic"
+        "mutlu musun Kadir al artık aq"
     )
     await context.bot.send_message(chat_id, msg)
 
